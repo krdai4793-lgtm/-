@@ -1,0 +1,2316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>فريق أصدقاء جازان | تأسس عام 1999م</title>
+  <style>
+    :root {
+      --navy: #0f2557;
+      --blue: #1d4ed8;
+      --blue-light: #eff6ff;
+      --red: #b91c1c;
+      --red-bright: #dc2626;
+      --red-light: #fef2f2;
+      --gold: #d97706;
+      --emerald: #047857;
+      --emerald-light: #ecfdf5;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+      padding-bottom: 40px;
+    }
+
+    button, input, select, textarea, label.btn {
+      font-family: inherit;
+      touch-action: manipulation;
+    }
+
+    /* Ticker */
+    .ticker-bar {
+      background: linear-gradient(90deg, var(--navy), var(--blue), var(--red));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      height: 36px;
+      overflow: hidden;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .ticker-badge {
+      background: #fff;
+      color: var(--red);
+      padding: 0 12px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      font-weight: 900;
+      z-index: 2;
+    }
+    .ticker-track {
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+    .ticker-text {
+      display: inline-block;
+      padding-right: 100%;
+      animation: marquee 28s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 52%, var(--red) 100%);
+      color: #fff;
+      padding: 14px 16px;
+      box-shadow: 0 4px 16px rgba(15, 37, 87, 0.22);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 12px;
+    }
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-box {
+      width: 68px;
+      height: 68px;
+      background: #fff;
+      border-radius: 50%;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .logo-box img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+    .brand h1 { font-size: 20px; font-weight: 900; letter-spacing: -0.3px; }
+    .brand p { font-size: 12px; opacity: 0.9; font-weight: 600; }
+
+    /* Auth & Period Bar */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.14);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .controls-bar select {
+      background: #fff;
+      color: var(--navy);
+      border: none;
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .btn {
+      border: none;
+      border-radius: 8px;
+      padding: 8px 13px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 0.08s ease, opacity 0.15s ease;
+      text-decoration: none;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-admin { background: #fff; color: var(--red); }
+    .btn-member { background: var(--navy); color: #fff; border: 1px solid rgba(255,255,255,0.35); }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-danger { background: var(--red-bright); color: #fff; }
+    .btn-success { background: var(--emerald); color: #fff; }
+    .btn-outline { background: #fff; color: var(--text); border: 1px solid var(--border); }
+    .btn-sm { padding: 5px 9px; font-size: 12px; border-radius: 6px; }
+
+    .session-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      color: var(--navy);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    /* Navigation Tabs */
+    .nav-wrap {
+      background: #fff;
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .nav-tabs {
+      display: flex;
+      overflow-x: auto;
+      gap: 6px;
+      padding: 8px 12px;
+      max-width: 1200px;
+      margin: 0 auto;
+      scrollbar-width: none;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      background: #f8fafc;
+      color: #334155;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--blue), var(--red));
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 3px 10px rgba(29, 78, 216, 0.25);
+    }
+
+    /* Pages */
+    .page-section { display: none; padding-top: 16px; }
+    .page-section.active { display: block; }
+
+    /* Cards & Grid */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+    }
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .stat-box {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+    }
+    .stat-box.blue { background: var(--blue-light); border-color: #bfdbfe; color: var(--navy); }
+    .stat-box.red { background: var(--red-light); border-color: #fecaca; color: #7f1d1d; }
+    .stat-box.green { background: var(--emerald-light); border-color: #a7f3d0; color: #064e3b; }
+    .stat-label { font-size: 12px; font-weight: 700; opacity: 0.85; }
+    .stat-val { font-size: 22px; font-weight: 900; margin-top: 4px; }
+
+    /* Media & Ads / Newspaper Gallery */
+    .media-frame {
+      width: 100%;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      background: #f8fafc;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+      padding: 12px;
+    }
+    .media-frame img {
+      max-width: 100%;
+      max-height: 460px;
+      border-radius: 8px;
+      object-fit: contain;
+      cursor: zoom-in;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .gallery-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      cursor: zoom-in;
+      background: #f1f5f9;
+    }
+    .gallery-body {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    th {
+      background: var(--navy);
+      color: #fff;
+      padding: 10px 8px;
+      font-weight: 800;
+    }
+    td {
+      padding: 8px 6px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+    }
+    tr:nth-child(even) td { background: #f8fafc; }
+    td.name-col, th.name-col { text-align: right; padding-right: 12px; position: sticky; right: 0; z-index: 2; }
+    td.name-col { background: #fff; font-weight: 800; color: var(--navy); }
+    tr:nth-child(even) td.name-col { background: #f8fafc; }
+
+    /* Forms */
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 800; margin-bottom: 5px; color: var(--navy); }
+    .form-control {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #fff;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-red { background: #fee2e2; color: #991b1b; }
+    .badge-green { background: #d1fae5; color: #065f46; }
+    .badge-gold { background: #fef3c7; color: #92400e; }
+
+    /* Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-box {
+      background: #fff;
+      width: 100%;
+      max-width: 460px;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.28);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-box.lightbox {
+      max-width: 820px;
+      padding: 12px;
+      text-align: center;
+    }
+    .modal-box.lightbox img {
+      max-width: 100%;
+      max-height: 78vh;
+      border-radius: 10px;
+    }
+
+    /* Player Chips */
+    .chip-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .player-chip {
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid var(--border);
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .player-chip.starter { border-color: #93c5fd; background: #eff6ff; }
+    .player-chip.sub { border-color: #fde68a; background: #fffbeb; }
+    .chip-del {
+      background: var(--red-bright);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 11px;
+      line-height: 1;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hidden { display: none !important; }
+    .text-red { color: var(--red-bright); }
+    .text-blue { color: var(--blue); }
+    .text-green { color: var(--emerald); }
+    .fw-900 { font-weight: 900; }
+  </style>
+</head>
+<body>
+
+  <!-- شريط الأخبار المتحرك -->
+  <div class="ticker-bar">
+    <div class="ticker-badge">📢 أخبار الفريق</div>
+    <div class="ticker-track">
+      <div class="ticker-text" id="tickerDisplay">مرحباً بكم في المنصة الرسمية لفريق أصدقاء جازان (تأسس عام 1999م) • التسجيل لمباراة الجمعة من 3:00 إلى 4:00 عصراً ومباراة الاثنين من 9:00 إلى 10:00 مساءً • الالتزام بالحضور والروح الرياضية شعارنا الدائم.</div>
+    </div>
+  </div>
+
+  <!-- الهيدر الرئيسي -->
+  <header class="header">
+    <div class="container">
+      <div class="header-top">
+        <div class="brand">
+          <div class="logo-box" id="logoContainer">
+            <!-- شعار فريق أصدقاء جازان الرسمي 1999م -->
+            <svg viewBox="0 0 200 200" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="100,10 175,45 188,110 100,190 12,110 25,45" fill="#0f2557" stroke="#ffffff" stroke-width="5"/>
+              <polygon points="100,20 165,50 176,108 100,178 24,108 35,50" fill="#b91c1c"/>
+              <polygon points="75,24 90,17 90,42 75,42" fill="#111827"/>
+              <polygon points="92,16 108,16 108,42 92,42" fill="#dc2626"/>
+              <polygon points="110,17 125,24 125,42 110,42" fill="#047857"/>
+              <circle cx="100" cy="68" r="28" fill="#ffffff" stroke="#d97706" stroke-width="4"/>
+              <polygon points="100,46 107,60 122,62 111,72 114,87 100,80 86,87 89,72 78,62 93,60" fill="#d97706"/>
+              <rect x="14" y="96" width="172" height="28" rx="4" fill="#ffffff" stroke="#0f2557" stroke-width="3"/>
+              <text x="100" y="115" text-anchor="middle" fill="#0f2557" font-size="16" font-weight="900" font-family="Tahoma, Arial">فريق أصدقاء جازان</text>
+              <text x="100" y="142" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700" font-family="Tahoma, Arial">تأسس عام</text>
+              <text x="100" y="164" text-anchor="middle" fill="#fef08a" font-size="18" font-weight="900" font-family="Tahoma, Arial">1999م</text>
+            </svg>
+          </div>
+          <div>
+            <h1>فريق أصدقاء جازان</h1>
+            <p>تأسس عام 1999م • المنصة الرسمية للإحصائيات والبطولات</p>
+          </div>
+        </div>
+
+        <!-- أزرار الدخول واختيار الشهر والسنة (ظاهرة دائماً) -->
+        <div class="controls-bar">
+          <select id="yearSelect" title="السنة">
+            <option value="2026" selected>2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2030</option>
+          </select>
+          <select id="monthSelect" title="الشهر">
+            <option value="1">يناير (1)</option>
+            <option value="2">فبراير (2)</option>
+            <option value="3">مارس (3)</option>
+            <option value="4">أبريل (4)</option>
+            <option value="5">مايو (5)</option>
+            <option value="6">يونيو (6)</option>
+            <option value="7">يوليو (7)</option>
+            <option value="8">أغسطس (8)</option>
+            <option value="9">سبتمبر (9)</option>
+            <option value="10" selected>أكتوبر (10)</option>
+            <option value="11">نوفمبر (11)</option>
+            <option value="12">ديسمبر (12)</option>
+          </select>
+
+          <div id="authButtons">
+            <button type="button" class="btn btn-admin" onclick="openAdminModal()">🔐 دخول الإدارة</button>
+            <button type="button" class="btn btn-member" onclick="openMemberModal()">👤 دخول الأعضاء</button>
+          </div>
+          <div id="sessionInfo" class="session-pill hidden">
+            <span id="sessionLabel"></span>
+            <button type="button" class="btn btn-danger btn-sm" onclick="logout()">خروج</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- شريط الأيقونات والتنقل السريع -->
+  <nav class="nav-wrap">
+    <div class="nav-tabs" id="navTabs">
+      <button type="button" class="tab-btn active" data-tab="home">🏠 الرئيسية وإعلانات المباريات</button>
+      <button type="button" class="tab-btn" data-tab="newspaper">📰 جريدة الفريق</button>
+      <button type="button" class="tab-btn" data-tab="league">🏆 دوري النقاط والإحصائيات</button>
+      <button type="button" class="tab-btn" data-tab="attendance">⚽ الحضور والقرعة (ذهاب وإياب)</button>
+      <button type="button" class="tab-btn" data-tab="tournament">🥇 المتأهلون والمستويات</button>
+      <button type="button" class="tab-btn" data-tab="finance">💰 التقرير المالي والمصروفات</button>
+      <button type="button" class="tab-btn" data-tab="motm">⭐ تصويت نجم المباراة</button>
+      <button type="button" class="tab-btn" data-tab="settings">⚙️ الإدارة والأعضاء</button>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- 1. الشاشة الرئيسية وإعلانات المباريات -->
+    <section id="tab-home" class="page-section active">
+
+      <!-- قسم صور إعلانات المباريات -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📣 إعلانات مباريات الفريق</div>
+          <div class="admin-only hidden" style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+            <input type="text" id="adTitleInput" class="form-control" style="width:200px; padding:6px 10px; font-size:12px;" placeholder="عنوان الإعلان (مثال: مباراة الجمعة)" />
+            <label for="adFileInput" class="btn btn-primary btn-sm" style="cursor:pointer;">📸 رفع صورة إعلان مباراة</label>
+            <input type="file" id="adFileInput" accept="image/*" style="display:none;" onchange="handleAdUpload(event)" />
+          </div>
+        </div>
+        <div id="matchAdsContainer"></div>
+      </div>
+
+      <!-- الموقف المالي للشهر -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📊 الموقف المالي للشهر (<span class="period-label">أكتوبر 2026</span>)</div>
+          <span class="badge badge-blue">الاشتراك الشهري: 20 ريال</span>
+        </div>
+        <div class="grid-3">
+          <div class="stat-box blue">
+            <div class="stat-label">إيرادات الشهر (الاشتراكات)</div>
+            <div class="stat-val" id="homeMonthRev">0 ريال</div>
+          </div>
+          <div class="stat-box red">
+            <div class="stat-label">مصروفات الشهر</div>
+            <div class="stat-val" id="homeMonthExp">0 ريال</div>
+          </div>
+          <div class="stat-box green">
+            <div class="stat-label">المتبقي في صندوق الشهر</div>
+            <div class="stat-val" id="homeMonthNet">0 ريال</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- الملخص المالي لكامل السنة -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🏦 الملخص المالي لكامل السنة (<span class="year-label">2026</span>)</div>
+          <button type="button" class="btn btn-outline btn-sm" onclick="switchTab('finance')">فتح التقرير المالي الكامل ←</button>
+        </div>
+        <div class="grid-3">
+          <div class="stat-box blue">
+            <div class="stat-label">إجمالي إيرادات السنة</div>
+            <div class="stat-val" id="homeYearRev">0 ريال</div>
+          </div>
+          <div class="stat-box red">
+            <div class="stat-label">إجمالي مصروفات السنة</div>
+            <div class="stat-val" id="homeYearExp">0 ريال</div>
+          </div>
+          <div class="stat-box green">
+            <div class="stat-label">الرصيد السنوي المتبقي</div>
+            <div class="stat-val" id="homeYearNet">0 ريال</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🥇 صدارة دوري النقاط (<span class="period-label">أكتوبر 2026</span>)</div>
+            <button type="button" class="btn btn-outline btn-sm" onclick="switchTab('league')">الجدول الكامل</button>
+          </div>
+          <div id="homeTopPlayers"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">⭐ نجوم مباريات الشهر (<span class="period-label">أكتوبر 2026</span>)</div>
+            <button type="button" class="btn btn-outline btn-sm" onclick="switchTab('motm')">سجل النجوم</button>
+          </div>
+          <div id="homeMotmList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. جريدة الفريق (رفع وتصفح الأعداد) -->
+    <section id="tab-newspaper" class="page-section">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📰 جريدة فريق أصدقاء جازان (تصفح الأعداد والنشرات)</div>
+        </div>
+
+        <!-- نموذج رفع عدد جديد (للإدارة) -->
+        <div class="card admin-only hidden" style="background:#f8fafc;">
+          <div class="fw-900" style="margin-bottom:10px; color:var(--navy);">📤 نشر عدد جديد في جريدة الفريق</div>
+          <div class="grid-3">
+            <input type="text" id="newsIssueTitle" class="form-control" placeholder="عنوان العدد (مثال: العدد 15 - نشرة أكتوبر)" />
+            <input type="text" id="newsIssueDesc" class="form-control" placeholder="ملخص قصير أو وصف العدد (اختياري)" />
+            <label for="newsFileInput" class="btn btn-primary" style="cursor:pointer;">🖼️ اختر صورة الجريدة وانشر</label>
+            <input type="file" id="newsFileInput" accept="image/*" style="display:none;" onchange="handleNewspaperUpload(event)" />
+          </div>
+        </div>
+
+        <!-- عارض العدد المحدد للتصفح المكبر -->
+        <div id="newspaperReaderBox" class="card hidden" style="background:#f8fafc; border-color:#93c5fd;">
+          <div class="card-header">
+            <div class="card-title" id="readerTitle">تصفح العدد</div>
+            <div style="display:flex; gap:6px;">
+              <button type="button" class="btn btn-outline btn-sm" onclick="navigateNewspaper(-1)">→ العدد السابق</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="navigateNewspaper(1)">العدد التالي ←</button>
+              <button type="button" class="btn btn-danger btn-sm" onclick="closeNewspaperReader()">إغلاق العارض</button>
+            </div>
+          </div>
+          <div style="text-align:center;">
+            <img id="readerImg" src="" alt="صفحة الجريدة" style="max-width:100%; max-height:75vh; border-radius:10px; box-shadow:0 4px 16px rgba(0,0,0,0.15);" />
+            <p id="readerDesc" style="margin-top:10px; font-size:13px; color:var(--navy); font-weight:700;"></p>
+          </div>
+        </div>
+
+        <!-- أرشيف أعداد جريدة الفريق -->
+        <div id="newspaperGallery" class="gallery-grid"></div>
+      </div>
+    </section>
+
+    <!-- 3. دوري النقاط والإحصائيات -->
+    <section id="tab-league" class="page-section">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🏆 دوري النقاط وإحصائيات اللاعبين - <span class="period-label">أكتوبر 2026</span></div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button type="button" class="btn btn-primary btn-sm" id="btnViewPoints" onclick="setLeagueView('points')">جدول دوري النقاط</button>
+            <button type="button" class="btn btn-outline btn-sm" id="btnViewStats" onclick="setLeagueView('stats')">الإحصائيات التفصيلية (أهداف/أسيست/كروت)</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" id="playerSearch" class="form-control" placeholder="🔍 ابحث باسم اللاعب..." oninput="renderLeagueTable()" />
+        </div>
+
+        <div class="table-wrap">
+          <table id="leagueTable"></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. الحضور والقرعة وبوابة الكباتن -->
+    <section id="tab-attendance" class="page-section">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">⏰ تسجيل حضور المباراة وبوابة الكباتن</div>
+          <span id="windowStatusBadge" class="badge badge-blue">جاري الفحص...</span>
+        </div>
+
+        <!-- تنبيه الغرامة المالية الثابت للوضوح -->
+        <div class="stat-box red" style="margin-bottom:12px; font-size:13px;">
+          ⚠️ <b>تنبيه هام للأعضاء:</b> في حالة سجلت حضور ولم تحضر بدون سبب مقنع عليك غرامة مالية وهي <b>20 ريال</b>.
+        </div>
+
+        <div class="grid-2" style="margin-bottom:14px;">
+          <div class="stat-box blue">
+            <div class="fw-900">مواعيد التسجيل التلقائية للأعضاء:</div>
+            <div style="font-size:13px; margin-top:4px;">• كل <b>جمعة</b>: من 3:00 عصراً إلى 4:00 عصراً</div>
+            <div style="font-size:13px;">• كل <b>اثنين</b>: من 9:00 مساءً إلى 10:00 مساءً</div>
+          </div>
+          <div class="stat-box">
+            <div class="fw-900">حالة النصاب والاختيار (22 أساسياً + احتياط):</div>
+            <div style="font-size:13px; margin-top:4px;">المسجلون حالياً: <b id="attCountDisplay">0</b> لاعب (يفتح اختيار الكباتن عند اكتمال 22 لاعباً)</div>
+            <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-primary btn-sm" onclick="openCheckInConfirm()">✋ تسجيل حضوري الآن</button>
+              <button type="button" class="btn btn-outline btn-sm admin-only hidden" onclick="toggleManualWindow()">فتح/إغلاق التسجيل يدوياً</button>
+              <button type="button" class="btn btn-danger btn-sm admin-only hidden" onclick="resetAttendance()">تصفير الحضور</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- إدارة الحضور (إضافة عضو يدوياً أو حذف عضو من الحضور - للإدارة) -->
+        <div class="card admin-only hidden" style="background:#f8fafc;">
+          <div class="fw-900" style="margin-bottom:10px; color:var(--navy);">🛡️ إعداد الإدارة المسبق (تعيين كباتن الفريقين + إضافة/حذف عضو من الحضور)</div>
+          <div class="grid-3" style="margin-bottom:12px;">
+            <div>
+              <label style="font-size:12px; font-weight:800;">🔵 كابتن الفريق الأزرق:</label>
+              <select id="blueCaptainSelect" class="form-control"></select>
+            </div>
+            <div>
+              <label style="font-size:12px; font-weight:800;">🔴 كابتن الفريق الأحمر:</label>
+              <select id="redCaptainSelect" class="form-control"></select>
+            </div>
+            <div style="display:flex; align-items:flex-end;">
+              <button type="button" class="btn btn-primary" style="width:100%;" onclick="saveCaptains()">اعتماد الكباتن وتسجيل حضورهما</button>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center; padding-top:10px; border-top:1px solid var(--border);">
+            <label style="font-size:12px; font-weight:800;">➕ إضافة عضو لقائمة الحضور يدوياً:</label>
+            <select id="adminAddAttSelect" class="form-control" style="max-width:240px;"></select>
+            <button type="button" class="btn btn-success btn-sm" onclick="adminAddAttendanceMember()">إضافة للحضور</button>
+          </div>
+        </div>
+
+        <!-- قائمة الحاضرين (1-22 أساسيين، 23+ احتياط) -->
+        <div class="grid-2">
+          <div class="card" style="margin-bottom:0;">
+            <div class="fw-900 text-blue" style="margin-bottom:8px;">🏃 القائمة الأساسية (أول 22 حاضراً - 11 لكل فريق)</div>
+            <div class="chip-list" id="startersList"></div>
+          </div>
+          <div class="card" style="margin-bottom:0;">
+            <div class="fw-900" style="color:var(--gold); margin-bottom:8px;">🔄 قائمة الاحتياط (الحاضرون بعد رقم 22)</div>
+            <div class="chip-list" id="subsList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- بوابة اختيار الكباتن والقرعة (ذهاب وإياب) -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🎲 بوابة اختيار الكباتن والقرعة (نظام الذهاب والإياب)</div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button type="button" class="btn btn-primary btn-sm" id="leg1Btn" onclick="setActiveLeg(1)">مباراة الذهاب</button>
+            <button type="button" class="btn btn-outline btn-sm" id="leg2Btn" onclick="setActiveLeg(2)">مباراة الإياب</button>
+            <button type="button" class="btn btn-success btn-sm" onclick="runDraftLottery()">🎲 إجراء قرعة البداية</button>
+          </div>
+        </div>
+
+        <div id="draftTurnBanner" class="stat-box blue" style="margin-bottom:12px; font-weight:800;">
+          بانتظار اكتمال 22 لاعباً وإجراء قرعة البداية...
+        </div>
+
+        <!-- اللاعبون المتاحون للاختيار -->
+        <div style="margin-bottom:14px;">
+          <div class="fw-900" style="font-size:13px; margin-bottom:6px;">اللاعبون المتاحون للاختيار (يختفي اللاعب فور اختياره من أي فريق):</div>
+          <div class="chip-list" id="draftPoolList"></div>
+        </div>
+
+        <!-- تشكيلة الفريقين -->
+        <div class="grid-2">
+          <div class="card" style="border-color:#93c5fd; background:#eff6ff; margin-bottom:0;">
+            <div class="fw-900 text-blue" style="margin-bottom:8px;">🔵 الفريق الأزرق — الكابتن: <span id="blueCapName">غير محدد</span></div>
+            <div id="blueRosterList"></div>
+          </div>
+          <div class="card" style="border-color:#fca5a5; background:#fef2f2; margin-bottom:0;">
+            <div class="fw-900 text-red" style="margin-bottom:8px;">🔴 الفريق الأحمر — الكابتن: <span id="redCapName">غير محدد</span></div>
+            <div id="redRosterList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. المتأهلون وتصنيف المستويات -->
+    <section id="tab-tournament" class="page-section">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🥇 تسجيل نتيجة الذهاب والإياب والمتأهلون شهرياً</div>
+        </div>
+        <div class="grid-4" style="margin-bottom:12px;">
+          <div>
+            <label style="font-size:12px; font-weight:800;">أهداف الأزرق (ذهاب)</label>
+            <input type="number" id="bLeg1" class="form-control" value="0" min="0" />
+          </div>
+          <div>
+            <label style="font-size:12px; font-weight:800;">أهداف الأحمر (ذهاب)</label>
+            <input type="number" id="rLeg1" class="form-control" value="0" min="0" />
+          </div>
+          <div>
+            <label style="font-size:12px; font-weight:800;">أهداف الأزرق (إياب)</label>
+            <input type="number" id="bLeg2" class="form-control" value="0" min="0" />
+          </div>
+          <div>
+            <label style="font-size:12px; font-weight:800;">أهداف الأحمر (إياب)</label>
+            <input type="number" id="rLeg2" class="form-control" value="0" min="0" />
+          </div>
+        </div>
+        <button type="button" class="btn btn-success admin-only hidden" onclick="qualifyWinner()">اعتماد النتيجة وتأهيل الفريق الفائز باسم الكابتن</button>
+
+        <div style="margin-top:16px;">
+          <div class="fw-900" style="margin-bottom:8px;">📋 قائمة الفرق المتأهلة للدور القادم (<span class="period-label">أكتوبر 2026</span>):</div>
+          <div id="qualifiedTeamsList" class="chip-list"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📊 تصنيف المستويات (1 إلى 4) وقرعة الدور القادم</div>
+          <button type="button" class="btn btn-primary btn-sm" onclick="generateNextRoundDraw()">🎲 سحب قرعة الدور القادم حسب المستويات</button>
+        </div>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">يتم التصنيف تلقائياً بناءً على: النقاط، الأهداف، نظافة الشباك، والسلوك الرياضي (قلة الكروت).</p>
+        <div class="grid-4" id="tiersGrid"></div>
+        <div id="nextRoundMatches" style="margin-top:14px;"></div>
+      </div>
+    </section>
+
+    <!-- 6. التقرير المالي السنوي والمصروفات -->
+    <section id="tab-finance" class="page-section">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">💸 مصروفات الشهر (<span class="period-label">أكتوبر 2026</span>)</div>
+        </div>
+        <div class="grid-3 admin-only hidden" style="margin-bottom:12px;">
+          <input type="text" id="expTitle" class="form-control" placeholder="بيان المصروف (مثال: إيجار ملعب، مياه، كرات)" />
+          <input type="number" id="expAmount" class="form-control" placeholder="المبلغ بالريال" min="1" />
+          <button type="button" class="btn btn-danger" onclick="addExpense()">+ خصم مصروف من الاشتراكات</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th class="name-col">بيان المصروف</th>
+                <th>المبلغ</th>
+                <th>التاريخ</th>
+                <th class="admin-only hidden">حذف</th>
+              </tr>
+            </thead>
+            <tbody id="expensesTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📑 التقرير المالي للاشتراكات لكامل السنة (<span class="year-label">2026</span>)</div>
+          <span class="badge badge-green">انقر على أي خلية شهر لتبديل السداد (20 / 0) في وضع الإدارة</span>
+        </div>
+        <div class="table-wrap">
+          <table id="annualFinanceTable"></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. تصويت نجم المباراة وسجل النجوم -->
+    <section id="tab-motm" class="page-section">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">⭐ تصويت نجم المباراة (اختيار الإدارة من 1 إلى 4 لاعبين)</div>
+        </div>
+        <div class="admin-only hidden" style="margin-bottom:14px; padding:12px; background:#f8fafc; border-radius:10px;">
+          <div class="fw-900" style="margin-bottom:8px;">اختر المرشحين للتصويت (من 1 إلى 4 لاعبين كحد أقصى):</div>
+          <div class="grid-4" style="margin-bottom:10px;">
+            <select id="motmCand1" class="form-control"></select>
+            <select id="motmCand2" class="form-control"></select>
+            <select id="motmCand3" class="form-control"></select>
+            <select id="motmCand4" class="form-control"></select>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button type="button" class="btn btn-primary btn-sm" onclick="saveMotmNominees()">نشر قائمة التصويت</button>
+            <button type="button" class="btn btn-success btn-sm" onclick="finalizeMotmWinner()">اعتماد الفائز وحفظه في سجل نجوم الشهر</button>
+          </div>
+        </div>
+
+        <div id="motmVotingCards" class="grid-4"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🏅 سجل نجوم مباريات الشهر (<span class="period-label">أكتوبر 2026</span>)</div>
+        </div>
+        <div id="motmHistoryList"></div>
+      </div>
+    </section>
+
+    <!-- 8. الإدارة والأعضاء وحذف/إضافة عضو وإعادة تعيين الرقم السري -->
+    <section id="tab-settings" class="page-section">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">⚙️ إدارة الأعضاء والأرقام السرية والإعدادات</div>
+        </div>
+
+        <div id="settingsLockedMsg" class="stat-box red">
+          هذه الصفحة مخصصة للإدارة فقط. يرجى الضغط على زر <b>🔐 دخول الإدارة</b> في أعلى الصفحة للتحكم الكامل.
+        </div>
+
+        <div id="settingsAdminContent" class="hidden">
+          <div class="grid-2">
+            <div class="card">
+              <div class="fw-900" style="margin-bottom:10px;">📰 تعديل شريط الأخبار المتحرك</div>
+              <textarea id="tickerInput" class="form-control" rows="3"></textarea>
+              <button type="button" class="btn btn-primary btn-sm" style="margin-top:8px;" onclick="updateTicker()">حفظ الشريط الإخباري</button>
+            </div>
+
+            <div class="card">
+              <div class="fw-900" style="margin-bottom:10px;">🔑 تغيير كلمة مرور الإدارة</div>
+              <input type="password" id="newAdminPass" class="form-control" placeholder="كلمة المرور الجديدة للإدارة" />
+              <button type="button" class="btn btn-danger btn-sm" style="margin-top:8px;" onclick="changeAdminPassword()">تحديث كلمة مرور الإدارة</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="fw-900" style="margin-bottom:10px;">➕ إضافة عضو جديد للفريق</div>
+            <div style="display:flex; gap:8px;">
+              <input type="text" id="newMemberName" class="form-control" placeholder="اسم العضو الجديد..." />
+              <button type="button" class="btn btn-success" onclick="addNewMember()">إضافة</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="fw-900" style="margin-bottom:10px;">👥 قائمة أعضاء الفريق (إدارة الأرقام السرية وحذف عضو)</div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th class="name-col">اسم العضو</th>
+                    <th>حالة الرقم السري</th>
+                    <th>تعيين رقم سري جديد</th>
+                    <th>حذف العضو</th>
+                  </tr>
+                </thead>
+                <tbody id="memberPinsTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- نافذة دخول الإدارة -->
+  <div class="modal-backdrop" id="adminModal">
+    <div class="modal-box">
+      <h3 style="margin-bottom:12px; color:var(--navy);">🔐 تسجيل دخول الإدارة</h3>
+      <div class="form-group">
+        <label>كلمة مرور الإدارة (الافتراضية: 1234)</label>
+        <input type="password" id="adminPassInput" class="form-control" placeholder="أدخل كلمة المرور" onkeydown="if(event.key==='Enter')submitAdminLogin()" />
+      </div>
+      <div style="display:flex; gap:8px; justify-content:flex-end;">
+        <button type="button" class="btn btn-outline" onclick="closeModals()">إلغاء</button>
+        <button type="button" class="btn btn-admin" style="border:1px solid var(--red);" onclick="submitAdminLogin()">دخول الإدارة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة دخول الأعضاء -->
+  <div class="modal-backdrop" id="memberModal">
+    <div class="modal-box">
+      <h3 style="margin-bottom:12px; color:var(--navy);">👤 تسجيل دخول الأعضاء</h3>
+      <div class="form-group">
+        <label>اختر اسمك من قائمة الفريق:</label>
+        <select id="memberLoginSelect" class="form-control" onchange="checkMemberPinState()"></select>
+      </div>
+      <div class="form-group">
+        <label id="memberPinLabel">أدخل رقمك السري (PIN):</label>
+        <input type="password" id="memberPinInput" class="form-control" inputmode="numeric" maxlength="6" placeholder="أدخل 4 أرقام" onkeydown="if(event.key==='Enter')submitMemberLogin()" />
+      </div>
+      <p id="memberPinHint" style="font-size:12px; color:var(--blue); margin-bottom:12px;"></p>
+      <div style="display:flex; gap:8px; justify-content:flex-end;">
+        <button type="button" class="btn btn-outline" onclick="closeModals()">إلغاء</button>
+        <button type="button" class="btn btn-primary" onclick="submitMemberLogin()">دخول</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة تنبيه الغرامة وتأكيد تسجيل الحضور -->
+  <div class="modal-backdrop" id="checkInFineModal">
+    <div class="modal-box">
+      <h3 style="margin-bottom:10px; color:var(--red);">⚠️ تنبيه التزام الحضور والغرامة المالية</h3>
+      <div class="stat-box red" style="margin-bottom:12px; font-size:14px; font-weight:800; line-height:1.7;">
+        "في حالة سجلت حضور ولم تحضر بسبب غير مقنع عليك غرامة مالية وهي 20 ريال هل ترغب بتسجيل حضور؟"
+      </div>
+      <div class="form-group">
+        <label>أدخل رقمك السري لتأكيد موافقتك وتسجيل الحضور:</label>
+        <input type="password" id="checkInPinConfirmInput" class="form-control" inputmode="numeric" maxlength="6" placeholder="أدخل رقمك السري (PIN)" onkeydown="if(event.key==='Enter')confirmMemberSelfCheckIn()" />
+      </div>
+      <div style="display:flex; gap:8px; justify-content:flex-end;">
+        <button type="button" class="btn btn-outline" onclick="closeModals()">لا، إلغاء</button>
+        <button type="button" class="btn btn-success" onclick="confirmMemberSelfCheckIn()">نعم، أوافق وأسجل حضوري</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة تكبير الصور (الإعلانات / الجريدة) -->
+  <div class="modal-backdrop" id="lightboxModal" onclick="if(event.target===this)closeModals()">
+    <div class="modal-box lightbox">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <b id="lightboxCaption" style="color:var(--navy); font-size:14px;"></b>
+        <button type="button" class="btn btn-danger btn-sm" onclick="closeModals()">✕ إغلاق</button>
+      </div>
+      <img id="lightboxImg" src="" alt="عرض مكبر" />
+    </div>
+  </div>
+
+  <script>
+    const MONTHS_AR = ["", "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
+
+    const INITIAL_OCT_2026 = [
+      { id: 1, name: "هاشم", m: 12, w: 10, d: 1, l: 1, gf: 11, ga: 2, pts: 31 },
+      { id: 2, name: "الخبير بيسكة", m: 10, w: 8, d: 1, l: 1, gf: 9, ga: 2, pts: 25 },
+      { id: 3, name: "محمد كمال", m: 11, w: 8, d: 1, l: 2, gf: 9, ga: 3, pts: 25 },
+      { id: 4, name: "ابو اسماء", m: 11, w: 7, d: 1, l: 3, gf: 8, ga: 4, pts: 22 },
+      { id: 5, name: "محمد دفع الله", m: 11, w: 7, d: 1, l: 3, gf: 8, ga: 4, pts: 22 },
+      { id: 6, name: "احمد المهر", m: 11, w: 7, d: 1, l: 3, gf: 8, ga: 4, pts: 22 },
+      { id: 7, name: "الطيب", m: 12, w: 7, d: 1, l: 4, gf: 8, ga: 5, pts: 22 },
+      { id: 8, name: "الطاهر", m: 8, w: 6, d: 1, l: 1, gf: 7, ga: 2, pts: 19 },
+      { id: 9, name: "ابو حنين", m: 10, w: 6, d: 1, l: 3, gf: 7, ga: 4, pts: 19 },
+      { id: 10, name: "احمد روماني", m: 11, w: 6, d: 1, l: 4, gf: 7, ga: 5, pts: 19 },
+      { id: 11, name: "حميدو", m: 12, w: 6, d: 1, l: 5, gf: 7, ga: 6, pts: 19 },
+      { id: 12, name: "يوسف", m: 11, w: 5, d: 1, l: 5, gf: 6, ga: 6, pts: 16 },
+      { id: 13, name: "محمد زغبير", m: 11, w: 5, d: 1, l: 5, gf: 6, ga: 6, pts: 16 },
+      { id: 14, name: "ود حمد كلنكيت", m: 11, w: 5, d: 1, l: 5, gf: 6, ga: 6, pts: 16 },
+      { id: 15, name: "احمد عوض", m: 9, w: 4, d: 1, l: 4, gf: 5, ga: 5, pts: 13 },
+      { id: 16, name: "م علاء الدين", m: 10, w: 4, d: 1, l: 5, gf: 5, ga: 6, pts: 13 },
+      { id: 17, name: "عوض الكريم", m: 11, w: 4, d: 1, l: 6, gf: 5, ga: 7, pts: 13 },
+      { id: 18, name: "عمار", m: 11, w: 4, d: 1, l: 6, gf: 5, ga: 7, pts: 13 },
+      { id: 19, name: "مخو", m: 12, w: 4, d: 1, l: 7, gf: 5, ga: 8, pts: 13 },
+      { id: 20, name: "عيد محمد", m: 7, w: 4, d: 0, l: 3, gf: 4, ga: 3, pts: 12 },
+      { id: 21, name: "دكتور الصادق", m: 9, w: 4, d: 0, l: 5, gf: 4, ga: 5, pts: 12 },
+      { id: 22, name: "الصادق شلش", m: 10, w: 4, d: 0, l: 6, gf: 4, ga: 6, pts: 12 },
+      { id: 23, name: "عوض سكر", m: 8, w: 3, d: 1, l: 4, gf: 4, ga: 5, pts: 10 },
+      { id: 24, name: "امين", m: 9, w: 3, d: 1, l: 5, gf: 4, ga: 6, pts: 10 },
+      { id: 25, name: "كانتي", m: 10, w: 3, d: 1, l: 6, gf: 4, ga: 7, pts: 10 },
+      { id: 26, name: "الفاتح", m: 11, w: 3, d: 1, l: 7, gf: 4, ga: 8, pts: 10 },
+      { id: 27, name: "محمد شمس", m: 12, w: 3, d: 1, l: 8, gf: 4, ga: 9, pts: 10 },
+      { id: 28, name: "د عليش", m: 5, w: 3, d: 0, l: 2, gf: 3, ga: 2, pts: 9 },
+      { id: 29, name: "معز فتاحة", m: 5, w: 3, d: 0, l: 2, gf: 3, ga: 2, pts: 9 },
+      { id: 30, name: "لوكاكو", m: 6, w: 3, d: 0, l: 3, gf: 3, ga: 3, pts: 9 },
+      { id: 31, name: "عوض عيسى", m: 7, w: 3, d: 0, l: 4, gf: 3, ga: 4, pts: 9 },
+      { id: 32, name: "محمد الطيب", m: 5, w: 2, d: 1, l: 2, gf: 3, ga: 3, pts: 7 },
+      { id: 33, name: "العولقي", m: 6, w: 2, d: 1, l: 3, gf: 3, ga: 4, pts: 7 },
+      { id: 34, name: "رامي الجيلاني", m: 11, w: 2, d: 1, l: 8, gf: 3, ga: 9, pts: 7 },
+      { id: 35, name: "عمر البشير", m: 3, w: 2, d: 0, l: 1, gf: 2, ga: 1, pts: 6 },
+      { id: 36, name: "خليفة", m: 5, w: 2, d: 0, l: 3, gf: 2, ga: 3, pts: 6 },
+      { id: 37, name: "احمد خاطر الدون", m: 7, w: 2, d: 0, l: 5, gf: 2, ga: 5, pts: 6 },
+      { id: 38, name: "علي بيسكة", m: 3, w: 1, d: 1, l: 1, gf: 2, ga: 2, pts: 4 },
+      { id: 39, name: "حسين اليمني", m: 3, w: 1, d: 1, l: 1, gf: 2, ga: 2, pts: 4 },
+      { id: 40, name: "جون", m: 3, w: 1, d: 1, l: 1, gf: 2, ga: 2, pts: 4 },
+      { id: 41, name: "شريف", m: 8, w: 1, d: 1, l: 6, gf: 2, ga: 7, pts: 4 },
+      { id: 42, name: "مختار اليمني", m: 1, w: 1, d: 0, l: 0, gf: 1, ga: 0, pts: 3 },
+      { id: 43, name: "م ابو شيبة", m: 1, w: 1, d: 0, l: 0, gf: 1, ga: 0, pts: 3 },
+      { id: 44, name: "وليد", m: 4, w: 1, d: 0, l: 3, gf: 1, ga: 3, pts: 3 },
+      { id: 45, name: "علي ابو كرار", m: 6, w: 1, d: 0, l: 5, gf: 1, ga: 5, pts: 3 },
+      { id: 46, name: "سعد القحطاني", m: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+      { id: 47, name: "إبراهيم الصري", m: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
+    ];
+
+    const INITIAL_FINANCE_2026 = [
+      { name: "سعد علي القحطاني", m: [20,20,20, 20,20,20, 20,20,20, 20,20,20], note: "" },
+      { name: "إبراهيم الصري", m: [0,0,0, 0,20,20, 20,20,20, 20,20,20], note: "عضو جديد" },
+      { name: "الفاتح", m: [20,20,20, 20,20,20, 20,20,20, 20,20,20], note: "" },
+      { name: "دكتور الصادق", m: [0,0,0, 0,20,20, 20,20,20, 20,20,20], note: "عضو جديد" },
+      { name: "الصادق أبو حنين", m: [20,20,20, 20,20,20, 20,20,20, 20,20,20], note: "" },
+      { name: "احمد عثمان عبدالله العولقي", m: [20,20,20, 20,20,20, 20,20,20, 20,20,0], note: "" },
+      { name: "الطاهر", m: [0,0,0, 0,0,0, 0,0,0, 0,20,0], note: "عودة محارب قديم لبيته القديم" },
+      { name: "أحمد عوض (المستشار)", m: [20,20,20, 20,20,20, 20,20,20, 20,20,0], note: "" },
+      { name: "د.معاذ عمر هلال", m: [20,20,20, 20,20,20, 20,20,20, 20,20,0], note: "" },
+      { name: "محمد مختار موسى مختار (مخو)", m: [20,20,20, 20,20,20, 20,20,20, 20,20,0], note: "" },
+      { name: "احمد مدحت", m: [20,20,20, 0,20,20, 20,20,20, 20,20,0], note: "" },
+      { name: "ماجد", m: [20,20,20, 20,20,20, 20,20,20, 20,0,0], note: "" },
+      { name: "عوض سكر", m: [20,20,20, 20,20,20, 20,20,20, 20,0,0], note: "" },
+      { name: "أبو أسماء", m: [20,20,20, 20,20,20, 20,20,20, 20,0,0], note: "" },
+      { name: "محمد شمس", m: [20,20,20, 20,20,20, 20,20,20, 20,0,0], note: "" },
+      { name: "عبدالسلام علي عبدالحميد (بسكة)", m: [20,20,20, 20,20,20, 20,20,20, 20,0,0], note: "" },
+      { name: "م علاء الدين ادم على عمر", m: [20,20,20, 20,20,20, 20,20,20, 20,0,0], note: "" },
+      { name: "محمد حمد ( كلنكيت )", m: [20,20,20, 20,20,20, 20,20,20, 20,0,0], note: "" },
+      { name: "الطيب إبراهيم", m: [0,0,0, 0,0,0, 20,20,20, 20,0,0], note: "خرج من جازان وعاد" },
+      { name: "محمد دفع الله", m: [0,0,0, 0,0,0, 20,20,20, 20,0,0], note: "عضو جديد" },
+      { name: "شيخ عوض الكريم الصديق", m: [20,20,20, 20,20,20, 20,20,20, 20,0,0], note: "" },
+      { name: "محمد ادريس ابراهيم (اليسع) زغير", m: [20,20,20, 20,20,20, 20,20,20, 20,0,0], note: "" },
+      { name: "حامد محمد الحسن السباعي", m: [20,20,20, 20,20,20, 20,20,20, 20,0,0], note: "" },
+      { name: "علي عبد الكريم موسى . ابشيبه", m: [20,20,20, 20,20,20, 20,20,20, 20,0,0], note: "" },
+      { name: "احمد خاطر", m: [20,20,20, 20,20,20, 20,20,20, 0,0,0], note: "" },
+      { name: "الصادق سيف الدين(ميكيل)", m: [20,20,20, 20,20,20, 20,20,20, 0,0,0], note: "" },
+      { name: "متوكل عزالدين (جون)", m: [20,20,20, 20,20,20, 20,20,20, 0,0,0], note: "" },
+      { name: "رامي الجيلاني", m: [20,20,20, 20,20,20, 20,20,20, 0,0,0], note: "" },
+      { name: "محمد الطيب", m: [20,20,20, 20,20,20, 20,20,0, 0,0,0], note: "" },
+      { name: "عمار عثمان سعيد", m: [20,20,20, 20,20,20, 20,20,0, 0,0,0], note: "" },
+      { name: "أبو كرار", m: [20,20,20, 20,20,20, 20,20,0, 0,0,0], note: "" },
+      { name: "عبيد محمد", m: [20,20,20, 20,20,20, 20,20,0, 0,0,0], note: "" },
+      { name: "امين داؤود", m: [20,20,20, 20,20,20, 20,0,0, 0,0,0], note: "" },
+      { name: "حسين اليمني", m: [20,20,20, 20,20,20, 20,0,0, 0,0,0], note: "" },
+      { name: "عبدالحميد علي موسى (حميدو)", m: [20,20,20, 20,20,20, 20,0,0, 0,0,0], note: "" },
+      { name: "فتح الرحمن", m: [0,0,0, 0,0,0, 20,0,0, 0,0,0], note: "فترة غياب وزواج" },
+      { name: "محمد كمال (صخر)", m: [20,20,20, 20,20,20, 20,0,0, 0,0,0], note: "" }
+    ];
+
+    const STORAGE_KEY = "jazan_friends_fc_v7";
+
+    let state = {
+      adminPass: "1234",
+      ticker: "مرحباً بكم في المنصة الرسمية لفريق أصدقاء جازان (تأسس عام 1999م) • التسجيل لمباراة الجمعة من 3:00 إلى 4:00 عصراً ومباراة الاثنين من 9:00 إلى 10:00 مساءً • الالتزام بالحضور والروح الرياضية شعارنا الدائم.",
+      members: INITIAL_OCT_2026.map(p => p.name),
+      pins: {},
+      matchAds: [], // { id, title, date, image }
+      newspapers: [], // { id, title, desc, date, image }
+      statsByPeriod: {},
+      financeByYear: {
+        "2026": JSON.parse(JSON.stringify(INITIAL_FINANCE_2026))
+      },
+      expensesByPeriod: {},
+      attendance: {
+        manualOpen: false,
+        list: [],
+        blueCap: "",
+        redCap: "",
+        activeLeg: 1,
+        leg1First: "",
+        leg1Turn: "",
+        leg1Blue: [],
+        leg1Red: [],
+        leg2Blue: [],
+        leg2Red: [],
+        leg2Turn: ""
+      },
+      qualifiedByPeriod: {},
+      motmByPeriod: {}
+    };
+
+    function initDefaultStats() {
+      const octMap = {};
+      INITIAL_OCT_2026.forEach(p => {
+        octMap[p.name] = {
+          m: p.m, w: p.w, d: p.d, l: p.l,
+          gf: p.gf, ga: p.ga, pts: p.pts,
+          goals: p.gf, assists: Math.max(0, Math.floor(p.gf / 2)),
+          yc: 0, rc: 0, cs: p.ga <= 2 ? 2 : 0
+        };
+      });
+      state.statsByPeriod["2026-10"] = octMap;
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          state = Object.assign(state, parsed);
+          if (!Array.isArray(state.matchAds)) state.matchAds = [];
+          if (!Array.isArray(state.newspapers)) state.newspapers = [];
+        } else {
+          initDefaultStats();
+        }
+      } catch (e) {
+        initDefaultStats();
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        alert("تنبيه: مساحة التخزين المحلية في المتصفح ممتلئة! يرجى حذف بعض الصور القديمة.");
+      }
+    }
+
+    // ضغط الصور الذكي قبل الحفظ لضمان سرعة التصفح وعدم امتلاء الذاكرة
+    function compressImage(file, maxWidth, quality, callback) {
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        const img = new Image();
+        img.onload = function() {
+          let w = img.width;
+          let h = img.height;
+          if (w > maxWidth) {
+            h = Math.round((h * maxWidth) / w);
+            w = maxWidth;
+          }
+          const canvas = document.createElement("canvas");
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, w, h);
+          callback(canvas.toDataURL("image/jpeg", quality));
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    let session = { role: "guest", user: "" };
+    let activeTab = "home";
+    let leagueView = "points";
+    let currentReaderIdx = -1;
+
+    function getYear() { return document.getElementById("yearSelect").value; }
+    function getMonth() { return document.getElementById("monthSelect").value; }
+    function getPeriodKey() { return `${getYear()}-${getMonth()}`; }
+    function getPeriodLabel() { return `${MONTHS_AR[Number(getMonth())]} ${getYear()}`; }
+
+    function ensurePeriodData() {
+      const key = getPeriodKey();
+      if (!state.statsByPeriod[key]) state.statsByPeriod[key] = {};
+      state.members.forEach(name => {
+        if (!state.statsByPeriod[key][name]) {
+          state.statsByPeriod[key][name] = { m: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0, goals: 0, assists: 0, yc: 0, rc: 0, cs: 0 };
+        }
+      });
+
+      const yr = getYear();
+      if (!state.financeByYear[yr]) {
+        state.financeByYear[yr] = INITIAL_FINANCE_2026.map(row => ({
+          name: row.name,
+          m: [0,0,0,0,0,0,0,0,0,0,0,0],
+          note: ""
+        }));
+      }
+      if (!state.expensesByPeriod[key]) state.expensesByPeriod[key] = [];
+      if (!state.qualifiedByPeriod[key]) state.qualifiedByPeriod[key] = [];
+      if (!state.motmByPeriod[key]) state.motmByPeriod[key] = { nominees: [], votes: {}, voters: [], history: [] };
+    }
+
+    function switchTab(tabId) {
+      activeTab = tabId;
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.tab === tabId);
+      });
+      document.querySelectorAll(".page-section").forEach(sec => {
+        sec.classList.toggle("active", sec.id === `tab-${tabId}`);
+      });
+      renderActivePage();
+    }
+
+    document.getElementById("navTabs").addEventListener("click", (e) => {
+      const btn = e.target.closest(".tab-btn");
+      if (btn && btn.dataset.tab) switchTab(btn.dataset.tab);
+    });
+
+    document.getElementById("yearSelect").addEventListener("change", () => { ensurePeriodData(); renderActivePage(); });
+    document.getElementById("monthSelect").addEventListener("change", () => { ensurePeriodData(); renderActivePage(); });
+
+    function updateAuthUI() {
+      const isAdmin = session.role === "admin";
+      const isMember = session.role === "member";
+      document.getElementById("authButtons").classList.toggle("hidden", isAdmin || isMember);
+      document.getElementById("sessionInfo").classList.toggle("hidden", !(isAdmin || isMember));
+      if (isAdmin) {
+        document.getElementById("sessionLabel").textContent = "🛡️ وضع الإدارة (تحكم كامل)";
+      } else if (isMember) {
+        document.getElementById("sessionLabel").textContent = `👤 ${session.user}`;
+      }
+
+      document.querySelectorAll(".admin-only").forEach(el => {
+        el.classList.toggle("hidden", !isAdmin);
+      });
+      document.getElementById("settingsLockedMsg").classList.toggle("hidden", isAdmin);
+      document.getElementById("settingsAdminContent").classList.toggle("hidden", !isAdmin);
+    }
+
+    function openAdminModal() {
+      document.getElementById("adminPassInput").value = "";
+      document.getElementById("adminModal").classList.add("open");
+      setTimeout(() => document.getElementById("adminPassInput").focus(), 50);
+    }
+
+    function submitAdminLogin() {
+      const val = document.getElementById("adminPassInput").value.trim();
+      if (val === state.adminPass) {
+        session = { role: "admin", user: "الإدارة" };
+        closeModals();
+        updateAuthUI();
+        renderActivePage();
+      } else {
+        alert("كلمة مرور الإدارة غير صحيحة!");
+      }
+    }
+
+    function openMemberModal() {
+      const sel = document.getElementById("memberLoginSelect");
+      sel.innerHTML = state.members.map(m => `<option value="${m}">${m}</option>`).join("");
+      document.getElementById("memberPinInput").value = "";
+      checkMemberPinState();
+      document.getElementById("memberModal").classList.add("open");
+    }
+
+    function checkMemberPinState() {
+      const name = document.getElementById("memberLoginSelect").value;
+      const hasPin = !!state.pins[name];
+      document.getElementById("memberPinLabel").textContent = hasPin
+        ? "أدخل رقمك السري المسجل باسمك:"
+        : "دخولك الأول! أنشئ رقماً سرياً خاصاً بك (4 أرقام):";
+      document.getElementById("memberPinHint").textContent = hasPin
+        ? "سيُطلب منك هذا الرقم السري عند تسجيل حضور المباراة."
+        : "سيتم حفظ هذا الرقم السري باسمك لتأكيد هويتك مستقبلاً.";
+    }
+
+    function submitMemberLogin() {
+      const name = document.getElementById("memberLoginSelect").value;
+      const pin = document.getElementById("memberPinInput").value.trim();
+      if (pin.length < 4) {
+        alert("يرجى إدخال رقم سري مكون من 4 أرقام على الأقل.");
+        return;
+      }
+      if (!state.pins[name]) {
+        state.pins[name] = pin;
+        saveState();
+        alert(`تم إنشاء وحفظ الرقم السري باسم (${name}) بنجاح!`);
+      } else if (state.pins[name] !== pin) {
+        alert("الرقم السري غير صحيح! في حال النسيان تواصل مع الإدارة لإعادة تعيينه.");
+        return;
+      }
+      session = { role: "member", user: name };
+      closeModals();
+      updateAuthUI();
+      renderActivePage();
+    }
+
+    function logout() {
+      session = { role: "guest", user: "" };
+      updateAuthUI();
+      renderActivePage();
+    }
+
+    function closeModals() {
+      document.querySelectorAll(".modal-backdrop").forEach(m => m.classList.remove("open"));
+    }
+
+    function openLightbox(src, caption) {
+      document.getElementById("lightboxImg").src = src;
+      document.getElementById("lightboxCaption").textContent = caption || "";
+      document.getElementById("lightboxModal").classList.add("open");
+    }
+
+    // رفع وحذف صور إعلانات المباريات
+    function handleAdUpload(e) {
+      if (session.role !== "admin") return;
+      const file = e.target.files[0];
+      if (!file) return;
+      const titleInput = document.getElementById("adTitleInput");
+      const title = titleInput.value.trim() || `إعلان مباراة (${new Date().toLocaleDateString("ar-SA")})`;
+      compressImage(file, 900, 0.82, (dataUrl) => {
+        state.matchAds.unshift({
+          id: Date.now(),
+          title,
+          date: new Date().toLocaleDateString("ar-SA"),
+          image: dataUrl
+        });
+        titleInput.value = "";
+        e.target.value = "";
+        saveState();
+        renderHome();
+      });
+    }
+
+    function deleteMatchAd(id) {
+      if (session.role !== "admin") return;
+      if (!confirm("هل تريد حذف صورة هذا الإعلان؟")) return;
+      state.matchAds = state.matchAds.filter(a => a.id !== id);
+      saveState();
+      renderHome();
+    }
+
+    // رفع وتصفح جريدة الفريق
+    function handleNewspaperUpload(e) {
+      if (session.role !== "admin") return;
+      const file = e.target.files[0];
+      if (!file) return;
+      const titleEl = document.getElementById("newsIssueTitle");
+      const descEl = document.getElementById("newsIssueDesc");
+      const title = titleEl.value.trim() || `جريدة فريق أصدقاء جازان - ${new Date().toLocaleDateString("ar-SA")}`;
+      const desc = descEl.value.trim();
+
+      compressImage(file, 1100, 0.85, (dataUrl) => {
+        state.newspapers.unshift({
+          id: Date.now(),
+          title,
+          desc,
+          date: new Date().toLocaleDateString("ar-SA"),
+          image: dataUrl
+        });
+        titleEl.value = "";
+        descEl.value = "";
+        e.target.value = "";
+        saveState();
+        renderNewspaperPage();
+        alert("تم نشر العدد الجديد في جريدة الفريق بنجاح!");
+      });
+    }
+
+    function deleteNewspaper(id) {
+      if (session.role !== "admin") return;
+      if (!confirm("هل تريد حذف هذا العدد من جريدة الفريق؟")) return;
+      state.newspapers = state.newspapers.filter(n => n.id !== id);
+      currentReaderIdx = -1;
+      saveState();
+      renderNewspaperPage();
+    }
+
+    function openNewspaperReader(idx) {
+      if (idx < 0 || idx >= state.newspapers.length) return;
+      currentReaderIdx = idx;
+      const item = state.newspapers[idx];
+      document.getElementById("readerTitle").textContent = `📰 ${item.title} (${item.date})`;
+      document.getElementById("readerImg").src = item.image;
+      document.getElementById("readerDesc").textContent = item.desc || "";
+      document.getElementById("newspaperReaderBox").classList.remove("hidden");
+      document.getElementById("newspaperReaderBox").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function navigateNewspaper(step) {
+      if (!state.newspapers.length) return;
+      let next = currentReaderIdx + step;
+      if (next < 0) next = state.newspapers.length - 1;
+      if (next >= state.newspapers.length) next = 0;
+      openNewspaperReader(next);
+    }
+
+    function closeNewspaperReader() {
+      currentReaderIdx = -1;
+      document.getElementById("newspaperReaderBox").classList.add("hidden");
+    }
+
+    function renderNewspaperPage() {
+      const isAdmin = session.role === "admin";
+      const gallery = document.getElementById("newspaperGallery");
+      if (!state.newspapers.length) {
+        gallery.innerHTML = `<div class="media-frame" style="grid-column:1/-1;">
+          <div style="font-size:28px;">📰</div>
+          <div class="fw-900" style="color:var(--navy); margin-top:4px;">لا توجد أعداد منشورة في جريدة الفريق حالياً</div>
+          <div style="font-size:12px; color:var(--muted);">يمكن للإدارة رفع صور صفحات جريدة الفريق من الأعلى ليتمكن جميع الأعضاء من تصفحها.</div>
+        </div>`;
+        return;
+      }
+
+      gallery.innerHTML = state.newspapers.map((item, idx) => `
+        <div class="gallery-item">
+          <img src="${item.image}" alt="${item.title}" onclick="openNewspaperReader(${idx})" />
+          <div class="gallery-body">
+            <div class="fw-900" style="font-size:14px; color:var(--navy);">${item.title}</div>
+            <div style="font-size:12px; color:var(--muted);">${item.date} ${item.desc ? "• " + item.desc : ""}</div>
+            <div style="display:flex; gap:6px; margin-top:4px;">
+              <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="openNewspaperReader(${idx})">📖 تصفح العدد</button>
+              ${isAdmin ? `<button type="button" class="btn btn-danger btn-sm" onclick="deleteNewspaper(${item.id})">🗑️</button>` : ""}
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // الحسابات المالية
+    function calcFinanceSummary() {
+      const yr = getYear();
+      const mIdx = Number(getMonth()) - 1;
+      const rows = state.financeByYear[yr] || [];
+      let monthRev = 0, yearRev = 0;
+      rows.forEach(r => {
+        monthRev += Number(r.m[mIdx] || 0);
+        r.m.forEach(v => yearRev += Number(v || 0));
+      });
+
+      const monthExps = state.expensesByPeriod[getPeriodKey()] || [];
+      const monthExp = monthExps.reduce((s, e) => s + Number(e.amount || 0), 0);
+
+      let yearExp = 0;
+      for (let i = 1; i <= 12; i++) {
+        const list = state.expensesByPeriod[`${yr}-${i}`] || [];
+        list.forEach(e => yearExp += Number(e.amount || 0));
+      }
+
+      return {
+        monthRev, monthExp, monthNet: monthRev - monthExp,
+        yearRev, yearExp, yearNet: yearRev - yearExp
+      };
+    }
+
+    function renderActivePage() {
+      ensurePeriodData();
+      document.getElementById("tickerDisplay").textContent = state.ticker;
+      document.querySelectorAll(".period-label").forEach(el => el.textContent = getPeriodLabel());
+      document.querySelectorAll(".year-label").forEach(el => el.textContent = getYear());
+
+      if (activeTab === "home") renderHome();
+      else if (activeTab === "newspaper") renderNewspaperPage();
+      else if (activeTab === "league") renderLeagueTable();
+      else if (activeTab === "attendance") renderAttendancePage();
+      else if (activeTab === "tournament") renderTournamentPage();
+      else if (activeTab === "finance") renderFinancePage();
+      else if (activeTab === "motm") renderMotmPage();
+      else if (activeTab === "settings") renderSettingsPage();
+    }
+
+    // 1. الرئيسية
+    function renderHome() {
+      const isAdmin = session.role === "admin";
+      const adsEl = document.getElementById("matchAdsContainer");
+      if (!state.matchAds.length) {
+        adsEl.innerHTML = `<div class="media-frame">
+          <div style="font-size:26px;">📣</div>
+          <div class="fw-900" style="color:var(--navy); font-size:14px;">مساحة إعلانات مباريات الفريق</div>
+          <div style="font-size:12px; color:var(--muted);">لم يتم رفع إعلان مباراة حالياً.</div>
+        </div>`;
+      } else {
+        adsEl.innerHTML = `<div class="gallery-grid">
+          ${state.matchAds.map(ad => `
+            <div class="gallery-item">
+              <img src="${ad.image}" alt="${ad.title}" onclick="openLightbox('${ad.image}', '${ad.title}')" />
+              <div class="gallery-body">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span class="fw-900" style="font-size:13px; color:var(--navy);">${ad.title}</span>
+                  ${isAdmin ? `<button type="button" class="btn btn-danger btn-sm" onclick="deleteMatchAd(${ad.id})">🗑️</button>` : ""}
+                </div>
+                <span style="font-size:11px; color:var(--muted);">تاريخ النشر: ${ad.date} (اضغط للتكبير)</span>
+              </div>
+            </div>
+          `).join("")}
+        </div>`;
+      }
+
+      const fin = calcFinanceSummary();
+      document.getElementById("homeMonthRev").textContent = `${fin.monthRev} ريال`;
+      document.getElementById("homeMonthExp").textContent = `${fin.monthExp} ريال`;
+      document.getElementById("homeMonthNet").textContent = `${fin.monthNet} ريال`;
+      document.getElementById("homeYearRev").textContent = `${fin.yearRev} ريال`;
+      document.getElementById("homeYearExp").textContent = `${fin.yearExp} ريال`;
+      document.getElementById("homeYearNet").textContent = `${fin.yearNet} ريال`;
+
+      const pStats = state.statsByPeriod[getPeriodKey()];
+      const sorted = Object.entries(pStats)
+        .map(([name, s]) => ({ name, ...s }))
+        .sort((a, b) => b.pts - a.pts || (b.gf - b.ga) - (a.gf - a.ga));
+
+      document.getElementById("homeTopPlayers").innerHTML = sorted.slice(0, 5).map((p, idx) => `
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px;">
+          <span><b>${idx + 1}. ${p.name}</b></span>
+          <span class="badge badge-blue">${p.pts} نقطة (فوز ${p.w})</span>
+        </div>
+      `).join("");
+
+      const motmData = state.motmByPeriod[getPeriodKey()];
+      document.getElementById("homeMotmList").innerHTML = motmData.history.length
+        ? motmData.history.map(h => `
+            <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px;">
+              <span>⭐ <b>${h.name}</b></span>
+              <span class="badge badge-gold">${h.votes} صوت (${h.date})</span>
+            </div>
+          `).join("")
+        : `<p style="font-size:13px; color:var(--muted);">لم يتم تسجيل نجوم مباريات لهذا الشهر بعد.</p>`;
+    }
+
+    // 3. دوري النقاط والإحصائيات
+    function setLeagueView(v) {
+      leagueView = v;
+      document.getElementById("btnViewPoints").className = v === "points" ? "btn btn-primary btn-sm" : "btn btn-outline btn-sm";
+      document.getElementById("btnViewStats").className = v === "stats" ? "btn btn-primary btn-sm" : "btn btn-outline btn-sm";
+      renderLeagueTable();
+    }
+
+    function renderLeagueTable() {
+      const q = (document.getElementById("playerSearch").value || "").trim();
+      const pStats = state.statsByPeriod[getPeriodKey()];
+      const isAdmin = session.role === "admin";
+
+      const rows = Object.entries(pStats)
+        .map(([name, s]) => ({ name, ...s }))
+        .filter(r => !q || r.name.includes(q))
+        .sort((a, b) => b.pts - a.pts || (b.gf - b.ga) - (a.gf - a.ga) || b.gf - a.gf);
+
+      const tbl = document.getElementById("leagueTable");
+      if (leagueView === "points") {
+        tbl.innerHTML = `
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="name-col">اللاعب</th>
+              <th>م (لعب)</th>
+              <th>ف (فوز)</th>
+              <th>ت (تعادل)</th>
+              <th>خ (خسارة)</th>
+              <th>+/-</th>
+              <th>فرق</th>
+              <th>نقاط</th>
+              ${isAdmin ? "<th>تعديل</th>" : ""}
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map((r, i) => {
+              const diff = r.gf - r.ga;
+              return `
+                <tr>
+                  <td>${i + 1}</td>
+                  <td class="name-col">${r.name}</td>
+                  <td>${r.m}</td>
+                  <td class="text-green fw-900">${r.w}</td>
+                  <td>${r.d}</td>
+                  <td class="text-red">${r.l}</td>
+                  <td>${r.gf}:${r.ga}</td>
+                  <td dir="ltr">${diff > 0 ? "+" + diff : diff}</td>
+                  <td><span class="badge badge-blue">${r.pts}</span></td>
+                  ${isAdmin ? `<td><button type="button" class="btn btn-outline btn-sm" onclick="editPlayerStats('${r.name}')">✏️</button></td>` : ""}
+                </tr>
+              `;
+            }).join("")}
+          </tbody>
+        `;
+      } else {
+        tbl.innerHTML = `
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="name-col">اللاعب</th>
+              <th>المشاركات</th>
+              <th>الأهداف</th>
+              <th>تمريرات حاسمة</th>
+              <th>كلين شيت</th>
+              <th>كروت صفراء</th>
+              <th>كروت حمراء</th>
+              ${isAdmin ? "<th>تعديل</th>" : ""}
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map((r, i) => `
+              <tr>
+                <td>${i + 1}</td>
+                <td class="name-col">${r.name}</td>
+                <td>${r.m}</td>
+                <td class="text-blue fw-900">${r.goals}</td>
+                <td class="text-green fw-900">${r.assists}</td>
+                <td>${r.cs}</td>
+                <td>🟨 ${r.yc}</td>
+                <td>🟥 ${r.rc}</td>
+                ${isAdmin ? `<td><button type="button" class="btn btn-outline btn-sm" onclick="editPlayerStats('${r.name}')">✏️</button></td>` : ""}
+              </tr>
+            `).join("")}
+          </tbody>
+        `;
+      }
+    }
+
+    function editPlayerStats(name) {
+      if (session.role !== "admin") return;
+      const s = state.statsByPeriod[getPeriodKey()][name];
+      const m = prompt(`تعديل عدد المباريات (م) للاعب ${name}:`, s.m);
+      if (m === null) return;
+      const w = prompt(`مرات الفوز (ف):`, s.w);
+      const d = prompt(`مرات التعادل (ت):`, s.d);
+      const l = prompt(`مرات الخسارة (خ):`, s.l);
+      const gf = prompt(`الأهداف المسجلة له / الأهداف الشخصية:`, s.gf);
+      const ga = prompt(`الأهداف المستقبلة:`, s.ga);
+      const assists = prompt(`التمريرات الحاسمة:`, s.assists);
+      const yc = prompt(`الكروت الصفراء:`, s.yc);
+      const rc = prompt(`الكروت الحمراء:`, s.rc);
+
+      s.m = Number(m) || 0;
+      s.w = Number(w) || 0;
+      s.d = Number(d) || 0;
+      s.l = Number(l) || 0;
+      s.gf = Number(gf) || 0;
+      s.goals = s.gf;
+      s.ga = Number(ga) || 0;
+      s.pts = (s.w * 3) + (s.d * 1);
+      s.assists = Number(assists) || 0;
+      s.yc = Number(yc) || 0;
+      s.rc = Number(rc) || 0;
+      saveState();
+      renderLeagueTable();
+    }
+
+    // 4. الحضور والقرعة + تنبيه الغرامة 20 ريال + إضافة/حذف عضو
+    function isRegistrationOpen() {
+      if (state.attendance.manualOpen) return true;
+      const now = new Date();
+      const day = now.getDay();
+      const hour = now.getHours();
+      if (day === 5 && hour === 15) return true;
+      if (day === 1 && hour === 21) return true;
+      return false;
+    }
+
+    function toggleManualWindow() {
+      state.attendance.manualOpen = !state.attendance.manualOpen;
+      saveState();
+      renderAttendancePage();
+    }
+
+    function openCheckInConfirm() {
+      if (session.role !== "member") {
+        alert("يرجى تسجيل الدخول أولاً من زر (👤 دخول الأعضاء) في أعلى الصفحة.");
+        openMemberModal();
+        return;
+      }
+      if (!isRegistrationOpen()) {
+        alert("بوابة التسجيل مغلقة حالياً! تفتح تلقائياً الجمعة (3-4 عصراً) والاثنين (9-10 مساءً) أو يدوياً من الإدارة.");
+        return;
+      }
+      if (state.attendance.list.some(x => x.name === session.user)) {
+        alert("تم تسجيل حضورك مسبقاً في هذه القائمة!");
+        return;
+      }
+      document.getElementById("checkInPinConfirmInput").value = "";
+      document.getElementById("checkInFineModal").classList.add("open");
+      setTimeout(() => document.getElementById("checkInPinConfirmInput").focus(), 50);
+    }
+
+    function confirmMemberSelfCheckIn() {
+      const pinCheck = document.getElementById("checkInPinConfirmInput").value.trim();
+      if (pinCheck !== state.pins[session.user]) {
+        alert("الرقم السري غير مطابق! لم يتم تسجيل الحضور.");
+        return;
+      }
+      state.attendance.list.push({
+        name: session.user,
+        time: new Date().toLocaleTimeString("ar-SA", { hour: "2-digit", minute: "2-digit" }),
+        isCaptain: false
+      });
+      closeModals();
+      saveState();
+      renderAttendancePage();
+      alert(`تم تسجيل حضورك بنجاح يا ${session.user}!`);
+    }
+
+    function adminAddAttendanceMember() {
+      if (session.role !== "admin") return;
+      const name = document.getElementById("adminAddAttSelect").value;
+      if (!name) return;
+      if (state.attendance.list.some(x => x.name === name)) {
+        alert("هذا العضو مسجل في قائمة الحضور بالفعل!");
+        return;
+      }
+      state.attendance.list.push({
+        name,
+        time: "إضافة إدارة",
+        isCaptain: false
+      });
+      saveState();
+      renderAttendancePage();
+    }
+
+    function adminRemoveAttendanceMember(name) {
+      if (session.role !== "admin") return;
+      if (!confirm(`هل تريد حذف (${name}) من قائمة حضور هذه المباراة؟`)) return;
+      state.attendance.list = state.attendance.list.filter(x => x.name !== name);
+      state.attendance.leg1Blue = state.attendance.leg1Blue.filter(x => x !== name);
+      state.attendance.leg1Red = state.attendance.leg1Red.filter(x => x !== name);
+      state.attendance.leg2Blue = state.attendance.leg2Blue.filter(x => x !== name);
+      state.attendance.leg2Red = state.attendance.leg2Red.filter(x => x !== name);
+      saveState();
+      renderAttendancePage();
+    }
+
+    function saveCaptains() {
+      const bCap = document.getElementById("blueCaptainSelect").value;
+      const rCap = document.getElementById("redCaptainSelect").value;
+      if (!bCap || !rCap || bCap === rCap) {
+        alert("يرجى اختيار كابتنين مختلفين للفريق الأزرق والأحمر.");
+        return;
+      }
+      state.attendance.blueCap = bCap;
+      state.attendance.redCap = rCap;
+
+      state.attendance.list = state.attendance.list.filter(x => x.name !== bCap && x.name !== rCap);
+      state.attendance.list.unshift(
+        { name: rCap, time: "كابتن الأحمر", isCaptain: true },
+        { name: bCap, time: "كابتن الأزرق", isCaptain: true }
+      );
+      state.attendance.leg1Blue = [bCap];
+      state.attendance.leg1Red = [rCap];
+      state.attendance.leg2Blue = [bCap];
+      state.attendance.leg2Red = [rCap];
+      saveState();
+      renderAttendancePage();
+      alert("تم اعتماد الكباتن وتسجيل حضورهما مسبقاً.");
+    }
+
+    function resetAttendance() {
+      if (!confirm("هل تريد تصفير قائمة الحضور والتشكيلات لمباراة جديدة؟")) return;
+      state.attendance.list = [];
+      state.attendance.leg1Blue = [];
+      state.attendance.leg1Red = [];
+      state.attendance.leg2Blue = [];
+      state.attendance.leg2Red = [];
+      state.attendance.leg1First = "";
+      state.attendance.leg1Turn = "";
+      state.attendance.leg2Turn = "";
+      saveState();
+      renderAttendancePage();
+    }
+
+    function runDraftLottery() {
+      const att = state.attendance;
+      if (att.list.length < 22) {
+        alert("بوابة الاختيار والقرعة لا تفتح إلا بعد اكتمال حضور 22 عضواً على الأقل.");
+        return;
+      }
+      if (!att.blueCap || !att.redCap) {
+        alert("يجب تحديد كباتن الفريقين من الإدارة أولاً.");
+        return;
+      }
+      const first = Math.random() < 0.5 ? "blue" : "red";
+      att.leg1First = first;
+      att.leg1Turn = first;
+      att.leg2Turn = first === "blue" ? "red" : "blue";
+      att.leg1Blue = [att.blueCap];
+      att.leg1Red = [att.redCap];
+      att.leg2Blue = [att.blueCap];
+      att.leg2Red = [att.redCap];
+      saveState();
+      renderAttendancePage();
+    }
+
+    function setActiveLeg(leg) {
+      state.attendance.activeLeg = leg;
+      document.getElementById("leg1Btn").className = leg === 1 ? "btn btn-primary btn-sm" : "btn btn-outline btn-sm";
+      document.getElementById("leg2Btn").className = leg === 2 ? "btn btn-primary btn-sm" : "btn btn-outline btn-sm";
+      renderAttendancePage();
+    }
+
+    function pickPlayerForTeam(playerName) {
+      const att = state.attendance;
+      if (att.list.length < 22) {
+        alert("بوابة الاختيار مغلقة حتى يكتمل 22 لاعباً.");
+        return;
+      }
+      const leg = att.activeLeg;
+      const turn = leg === 1 ? att.leg1Turn : att.leg2Turn;
+      if (!turn) {
+        alert("يرجى إجراء قرعة البداية أولاً!");
+        return;
+      }
+
+      const requiredCap = turn === "blue" ? att.blueCap : att.redCap;
+      if (session.role !== "admin" && session.user !== requiredCap) {
+        alert(`الدور الآن لكابتن ${turn === "blue" ? "الفريق الأزرق" : "الفريق الأحمر"} (${requiredCap}) فقط!`);
+        return;
+      }
+
+      if (leg === 1) {
+        if (turn === "blue") {
+          att.leg1Blue.push(playerName);
+          att.leg1Turn = "red";
+        } else {
+          att.leg1Red.push(playerName);
+          att.leg1Turn = "blue";
+        }
+      } else {
+        if (turn === "blue") {
+          att.leg2Blue.push(playerName);
+          att.leg2Turn = "red";
+        } else {
+          att.leg2Red.push(playerName);
+          att.leg2Turn = "blue";
+        }
+      }
+      saveState();
+      renderAttendancePage();
+    }
+
+    function renderAttendancePage() {
+      const att = state.attendance;
+      const isAdmin = session.role === "admin";
+      const open = isRegistrationOpen();
+      const badge = document.getElementById("windowStatusBadge");
+      badge.textContent = open ? "🟢 بوابة التسجيل مفتوحة الآن" : "🔴 بوابة التسجيل مغلقة حالياً";
+      badge.className = open ? "badge badge-green" : "badge badge-red";
+
+      document.getElementById("attCountDisplay").textContent = att.list.length;
+
+      const opts = state.members.map(m => `<option value="${m}">${m}</option>`).join("");
+      const bSel = document.getElementById("blueCaptainSelect");
+      const rSel = document.getElementById("redCaptainSelect");
+      const addAttSel = document.getElementById("adminAddAttSelect");
+      bSel.innerHTML = opts;
+      rSel.innerHTML = opts;
+      addAttSel.innerHTML = opts;
+      if (att.blueCap) bSel.value = att.blueCap;
+      if (att.redCap) rSel.value = att.redCap;
+
+      const starters = att.list.slice(0, 22);
+      const subs = att.list.slice(22);
+
+      document.getElementById("startersList").innerHTML = starters.length
+        ? starters.map((p, i) => `
+            <div class="player-chip starter">
+              <span>${i + 1}. ${p.name} <small>(${p.time})</small></span>
+              ${isAdmin ? `<button type="button" class="chip-del" title="حذف من الحضور" onclick="adminRemoveAttendanceMember('${p.name}')">×</button>` : ""}
+            </div>
+          `).join("")
+        : `<span style="font-size:12px; color:var(--muted);">لا يوجد مسجلون بعد.</span>`;
+
+      document.getElementById("subsList").innerHTML = subs.length
+        ? subs.map((p, i) => `
+            <div class="player-chip sub">
+              <span>${i + 23}. ${p.name} <small>(احتياط)</small></span>
+              ${isAdmin ? `<button type="button" class="chip-del" title="حذف من الحضور" onclick="adminRemoveAttendanceMember('${p.name}')">×</button>` : ""}
+            </div>
+          `).join("")
+        : `<span style="font-size:12px; color:var(--muted);">لا يوجد احتياط بعد (يبدأ بعد اللاعب رقم 22).</span>`;
+
+      document.getElementById("blueCapName").textContent = att.blueCap || "غير محدد";
+      document.getElementById("redCapName").textContent = att.redCap || "غير محدد";
+
+      const leg = att.activeLeg;
+      const blueTeam = leg === 1 ? att.leg1Blue : att.leg2Blue;
+      const redTeam = leg === 1 ? att.leg1Red : att.leg2Red;
+      const turn = leg === 1 ? att.leg1Turn : att.leg2Turn;
+
+      const banner = document.getElementById("draftTurnBanner");
+      if (att.list.length < 22) {
+        banner.textContent = `🔒 بوابة اختيار الكباتن مغلقة حالياً — متبقي (${22 - att.list.length}) لاعب لاكتمال النصاب (22 لاعباً).`;
+      } else if (!turn) {
+        banner.textContent = `✅ اكتمل النصاب (22 لاعباً)! اضغط على (🎲 إجراء قرعة البداية) لبدء الاختيار بالتناوب.`;
+      } else {
+        const capName = turn === "blue" ? att.blueCap : att.redCap;
+        banner.innerHTML = `🎯 مباراة ${leg === 1 ? "الذهاب" : "الإياب"} — الدور الآن لـ: <b>${turn === "blue" ? "🔵 الفريق الأزرق" : "🔴 الفريق الأحمر"} (الكابتن: ${capName})</b> — يُمنع تكرار أي لاعب تم اختياره.`;
+      }
+
+      const pickedSet = new Set([...blueTeam, ...redTeam]);
+      const available = att.list.filter(p => !pickedSet.has(p.name));
+
+      document.getElementById("draftPoolList").innerHTML = available.map(p => {
+        const globalIdx = att.list.findIndex(x => x.name === p.name);
+        const isSub = globalIdx >= 22;
+        return `<button type="button" class="player-chip ${isSub ? "sub" : "starter"}" style="cursor:pointer;" onclick="pickPlayerForTeam('${p.name}')">+ ${p.name} ${isSub ? "(احتياط)" : ""}</button>`;
+      }).join("");
+
+      document.getElementById("blueRosterList").innerHTML = blueTeam.map((n, i) => `<div style="padding:4px 0; font-size:13px; font-weight:700;">${i + 1}. ${n} ${i === 0 ? "⭐ (كابتن)" : ""}</div>`).join("");
+      document.getElementById("redRosterList").innerHTML = redTeam.map((n, i) => `<div style="padding:4px 0; font-size:13px; font-weight:700;">${i + 1}. ${n} ${i === 0 ? "⭐ (كابتن)" : ""}</div>`).join("");
+    }
+
+    // 5. البطولة والمتأهلون والمستويات
+    function qualifyWinner() {
+      const att = state.attendance;
+      if (!att.blueCap || !att.redCap) {
+        alert("يرجى تحديد كباتن الفريقين أولاً.");
+        return;
+      }
+      const bTotal = Number(document.getElementById("bLeg1").value) + Number(document.getElementById("bLeg2").value);
+      const rTotal = Number(document.getElementById("rLeg1").value) + Number(document.getElementById("rLeg2").value);
+      if (bTotal === rTotal) {
+        alert("المجموع متعادل! يرجى حسم النتيجة قبل اعتماد المتأهل.");
+        return;
+      }
+      const winnerCap = bTotal > rTotal ? att.blueCap : att.redCap;
+      const list = state.qualifiedByPeriod[getPeriodKey()];
+      list.push({
+        teamName: `فريق الكابتن ${winnerCap}`,
+        captain: winnerCap,
+        score: `${bTotal} - ${rTotal}`,
+        date: new Date().toLocaleDateString("ar-SA")
+      });
+      saveState();
+      renderTournamentPage();
+      alert(`تم تأهيل (${winnerCap}) للدور القادم!`);
+    }
+
+    function getPlayerTiers() {
+      const pStats = state.statsByPeriod[getPeriodKey()];
+      const ranked = Object.entries(pStats)
+        .map(([name, s]) => ({
+          name,
+          score: (s.pts * 10) + (s.gf * 3) + (s.cs * 4) - (s.yc * 2) - (s.rc * 5)
+        }))
+        .sort((a, b) => b.score - a.score);
+
+      const size = Math.ceil(ranked.length / 4);
+      return [
+        ranked.slice(0, size),
+        ranked.slice(size, size * 2),
+        ranked.slice(size * 2, size * 3),
+        ranked.slice(size * 3)
+      ];
+    }
+
+    function renderTournamentPage() {
+      const qList = state.qualifiedByPeriod[getPeriodKey()];
+      document.getElementById("qualifiedTeamsList").innerHTML = qList.length
+        ? qList.map((q, i) => `<div class="player-chip starter">🥇 ${i + 1}. <b>${q.teamName}</b> (النتيجة: ${q.score})</div>`).join("")
+        : `<span style="font-size:13px; color:var(--muted);">لم يتأهل أي فريق في هذا الشهر بعد.</span>`;
+
+      const tiers = getPlayerTiers();
+      const tierNames = ["المستوى الأول (النخبة)", "المستوى الثاني", "المستوى الثالث", "المستوى الرابع"];
+      document.getElementById("tiersGrid").innerHTML = tiers.map((t, idx) => `
+        <div class="stat-box ${idx === 0 ? "blue" : ""}">
+          <div class="fw-900" style="margin-bottom:6px; font-size:13px;">${tierNames[idx]}</div>
+          ${t.slice(0, 8).map((p, i) => `<div style="font-size:12px;">${i + 1}. ${p.name}</div>`).join("")}
+        </div>
+      `).join("");
+    }
+
+    function generateNextRoundDraw() {
+      const qList = state.qualifiedByPeriod[getPeriodKey()];
+      if (qList.length >= 2) {
+        const shuffled = [...qList].sort(() => Math.random() - 0.5);
+        let html = `<div class="stat-box green"><div class="fw-900" style="margin-bottom:6px;">🎲 مواجهات الدور القادم (قرعة المتأهلين):</div>`;
+        for (let i = 0; i < shuffled.length; i += 2) {
+          const t1 = shuffled[i].teamName;
+          const t2 = shuffled[i + 1] ? shuffled[i + 1].teamName : "تأهل مباشر (Bye)";
+          html += `<div style="font-size:13px; padding:4px 0;">⚔️ <b>${t1}</b> ضد <b>${t2}</b></div>`;
+        }
+        html += `</div>`;
+        document.getElementById("nextRoundMatches").innerHTML = html;
+      } else {
+        const tiers = getPlayerTiers();
+        const t1 = tiers[0][Math.floor(Math.random() * tiers[0].length)]?.name || "—";
+        const t2 = tiers[1][Math.floor(Math.random() * tiers[1].length)]?.name || "—";
+        document.getElementById("nextRoundMatches").innerHTML = `
+          <div class="stat-box blue">
+            <div class="fw-900">🎲 قرعة كباتن الدور القادم حسب تصنيف المستويات:</div>
+            <div style="font-size:13px; margin-top:4px;">🔵 كابتن المستوى الأول: <b>${t1}</b> 🆚 🔴 كابتن المستوى الثاني: <b>${t2}</b></div>
+          </div>
+        `;
+      }
+    }
+
+    // 6. التقرير المالي السنوي والمصروفات
+    function addExpense() {
+      if (session.role !== "admin") return;
+      const title = document.getElementById("expTitle").value.trim();
+      const amount = Number(document.getElementById("expAmount").value);
+      if (!title || amount <= 0) {
+        alert("يرجى إدخال بيان المصروف والمبلغ الصحيح.");
+        return;
+      }
+      state.expensesByPeriod[getPeriodKey()].push({
+        title,
+        amount,
+        date: new Date().toLocaleDateString("ar-SA")
+      });
+      document.getElementById("expTitle").value = "";
+      document.getElementById("expAmount").value = "";
+      saveState();
+      renderFinancePage();
+    }
+
+    function deleteExpense(idx) {
+      if (session.role !== "admin") return;
+      state.expensesByPeriod[getPeriodKey()].splice(idx, 1);
+      saveState();
+      renderFinancePage();
+    }
+
+    function togglePayment(rowIdx, monthIdx) {
+      if (session.role !== "admin") return;
+      const yr = getYear();
+      const curr = state.financeByYear[yr][rowIdx].m[monthIdx];
+      state.financeByYear[yr][rowIdx].m[monthIdx] = curr === 20 ? 0 : 20;
+      saveState();
+      renderFinancePage();
+    }
+
+    function renderFinancePage() {
+      const exps = state.expensesByPeriod[getPeriodKey()];
+      const isAdmin = session.role === "admin";
+      document.getElementById("expensesTableBody").innerHTML = exps.length
+        ? exps.map((e, i) => `
+            <tr>
+              <td>${i + 1}</td>
+              <td class="name-col">${e.title}</td>
+              <td class="text-red fw-900">${e.amount} ريال</td>
+              <td>${e.date}</td>
+              ${isAdmin ? `<td><button type="button" class="btn btn-danger btn-sm" onclick="deleteExpense(${i})">🗑️</button></td>` : ""}
+            </tr>
+          `).join("")
+        : `<tr><td colspan="5" style="color:var(--muted);">لا توجد مصروفات مسجلة في هذا الشهر.</td></tr>`;
+
+      const yr = getYear();
+      const rows = state.financeByYear[yr];
+      const monthTotals = Array(12).fill(0);
+      let grandTotal = 0;
+
+      const bodyHtml = rows.map((r, rIdx) => {
+        const q1 = r.m[0] + r.m[1] + r.m[2];
+        const q2 = r.m[3] + r.m[4] + r.m[5];
+        const q3 = r.m[6] + r.m[7] + r.m[8];
+        const q4 = r.m[9] + r.m[10] + r.m[11];
+        const rowSum = q1 + q2 + q3 + q4;
+        grandTotal += rowSum;
+        r.m.forEach((v, mIdx) => monthTotals[mIdx] += v);
+
+        const cell = (mIdx) => {
+          const val = r.m[mIdx];
+          return `<td style="cursor:${isAdmin ? "pointer" : "default"}; color:${val > 0 ? "#047857" : "#dc2626"}; font-weight:800;" onclick="togglePayment(${rIdx},${mIdx})">${val}</td>`;
+        };
+
+        return `
+          <tr>
+            <td>${rIdx + 1}</td>
+            <td class="name-col">${r.name} ${r.note ? `<small class="badge badge-gold">${r.note}</small>` : ""}</td>
+            ${cell(0)}${cell(1)}${cell(2)}<td style="background:#dbeafe; font-weight:900;">${q1}</td>
+            ${cell(3)}${cell(4)}${cell(5)}<td style="background:#dbeafe; font-weight:900;">${q2}</td>
+            ${cell(6)}${cell(7)}${cell(8)}<td style="background:#dbeafe; font-weight:900;">${q3}</td>
+            ${cell(9)}${cell(10)}${cell(11)}<td style="background:#dbeafe; font-weight:900;">${q4}</td>
+            <td style="background:#d1fae5; font-weight:900; color:#065f46;">${rowSum}</td>
+          </tr>
+        `;
+      }).join("");
+
+      document.getElementById("annualFinanceTable").innerHTML = `
+        <thead>
+          <tr>
+            <th>م</th>
+            <th class="name-col">الاسم</th>
+            <th>1</th><th>2</th><th>3</th><th>ر1</th>
+            <th>4</th><th>5</th><th>6</th><th>ر2</th>
+            <th>7</th><th>8</th><th>9</th><th>ر3</th>
+            <th>10</th><th>11</th><th>12</th><th>ر4</th>
+            <th>الإجمالي</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${bodyHtml}
+          <tr style="background:#0f2557; color:#fff; font-weight:900;">
+            <td colspan="2" style="background:#0f2557; color:#fff;">الإجمالي الشهري</td>
+            <td style="background:#0f2557; color:#fff;">${monthTotals[0]}</td>
+            <td style="background:#0f2557; color:#fff;">${monthTotals[1]}</td>
+            <td style="background:#0f2557; color:#fff;">${monthTotals[2]}</td>
+            <td style="background:#1d4ed8; color:#fff;">${monthTotals[0]+monthTotals[1]+monthTotals[2]}</td>
+            <td style="background:#0f2557; color:#fff;">${monthTotals[3]}</td>
+            <td style="background:#0f2557; color:#fff;">${monthTotals[4]}</td>
+            <td style="background:#0f2557; color:#fff;">${monthTotals[5]}</td>
+            <td style="background:#1d4ed8; color:#fff;">${monthTotals[3]+monthTotals[4]+monthTotals[5]}</td>
+            <td style="background:#0f2557; color:#fff;">${monthTotals[6]}</td>
+            <td style="background:#0f2557; color:#fff;">${monthTotals[7]}</td>
+            <td style="background:#0f2557; color:#fff;">${monthTotals[8]}</td>
+            <td style="background:#1d4ed8; color:#fff;">${monthTotals[6]+monthTotals[7]+monthTotals[8]}</td>
+            <td style="background:#0f2557; color:#fff;">${monthTotals[9]}</td>
+            <td style="background:#0f2557; color:#fff;">${monthTotals[10]}</td>
+            <td style="background:#0f2557; color:#fff;">${monthTotals[11]}</td>
+            <td style="background:#1d4ed8; color:#fff;">${monthTotals[9]+monthTotals[10]+monthTotals[11]}</td>
+            <td style="background:#b91c1c; color:#fff;">${grandTotal}</td>
+          </tr>
+        </tbody>
+      `;
+    }
+
+    // 7. تصويت نجم المباراة
+    function saveMotmNominees() {
+      if (session.role !== "admin") return;
+      const picks = [
+        document.getElementById("motmCand1").value,
+        document.getElementById("motmCand2").value,
+        document.getElementById("motmCand3").value,
+        document.getElementById("motmCand4").value
+      ].filter(Boolean);
+      const unique = [...new Set(picks)];
+      if (unique.length < 1 || unique.length > 4) {
+        alert("يرجى اختيار من 1 إلى 4 لاعبين كحد أقصى.");
+        return;
+      }
+      const motm = state.motmByPeriod[getPeriodKey()];
+      motm.nominees = unique;
+      motm.votes = {};
+      motm.voters = [];
+      unique.forEach(n => motm.votes[n] = 0);
+      saveState();
+      renderMotmPage();
+    }
+
+    function castMotmVote(candidate) {
+      if (session.role === "guest") {
+        alert("يرجى تسجيل الدخول كعضو أو إدارة للتصويت لنجم المباراة.");
+        openMemberModal();
+        return;
+      }
+      const voterId = session.role === "admin" ? "admin" : session.user;
+      const motm = state.motmByPeriod[getPeriodKey()];
+      if (motm.voters.includes(voterId)) {
+        alert("لقد قمت بالتصويت مسبقاً في هذه المباراة!");
+        return;
+      }
+      motm.votes[candidate] = (motm.votes[candidate] || 0) + 1;
+      motm.voters.push(voterId);
+      saveState();
+      renderMotmPage();
+    }
+
+    function finalizeMotmWinner() {
+      if (session.role !== "admin") return;
+      const motm = state.motmByPeriod[getPeriodKey()];
+      if (!motm.nominees.length) return;
+      let best = motm.nominees[0];
+      motm.nominees.forEach(n => {
+        if ((motm.votes[n] || 0) > (motm.votes[best] || 0)) best = n;
+      });
+      motm.history.unshift({
+        name: best,
+        votes: motm.votes[best] || 0,
+        date: new Date().toLocaleDateString("ar-SA")
+      });
+      motm.nominees = [];
+      saveState();
+      renderMotmPage();
+      alert(`تم اعتماد (${best}) كـ نجم المباراة وإضافته لسجل نجوم الشهر!`);
+    }
+
+    function renderMotmPage() {
+      const opts = `<option value="">-- بدون --</option>` + state.members.map(m => `<option value="${m}">${m}</option>`).join("");
+      ["motmCand1", "motmCand2", "motmCand3", "motmCand4"].forEach(id => {
+        document.getElementById(id).innerHTML = opts;
+      });
+
+      const motm = state.motmByPeriod[getPeriodKey()];
+      document.getElementById("motmVotingCards").innerHTML = motm.nominees.length
+        ? motm.nominees.map(n => `
+            <div class="stat-box blue" style="text-align:center;">
+              <div style="font-size:24px;">⭐</div>
+              <div class="fw-900" style="margin:6px 0;">${n}</div>
+              <div class="badge badge-gold" style="margin-bottom:8px;">${motm.votes[n] || 0} صوت</div><br/>
+              <button type="button" class="btn btn-primary btn-sm" onclick="castMotmVote('${n}')">تصويت للنجم</button>
+            </div>
+          `).join("")
+        : `<p style="font-size:13px; color:var(--muted);">لا يوجد تصويت نشط حالياً. تقوم الإدارة باختيار من 1 إلى 4 مرشحين بعد المباراة.</p>`;
+
+      document.getElementById("motmHistoryList").innerHTML = motm.history.length
+        ? motm.history.map((h, i) => `
+            <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px;">
+              <span>🏅 ${i + 1}. <b>${h.name}</b></span>
+              <span class="badge badge-green">${h.votes} صوت — ${h.date}</span>
+            </div>
+          `).join("")
+        : `<p style="font-size:13px; color:var(--muted);">لا يوجد سجل نجوم لهذا الشهر بعد.</p>`;
+    }
+
+    // 8. الإعدادات والأعضاء (إضافة وحذف عضو)
+    function updateTicker() {
+      if (session.role !== "admin") return;
+      state.ticker = document.getElementById("tickerInput").value.trim() || state.ticker;
+      saveState();
+      renderActivePage();
+      alert("تم تحديث شريط الأخبار المتحرك.");
+    }
+
+    function changeAdminPassword() {
+      if (session.role !== "admin") return;
+      const np = document.getElementById("newAdminPass").value.trim();
+      if (np.length < 4) {
+        alert("يرجى إدخال كلمة مرور من 4 أحرف/أرقام على الأقل.");
+        return;
+      }
+      state.adminPass = np;
+      document.getElementById("newAdminPass").value = "";
+      saveState();
+      alert("تم تغيير كلمة مرور الإدارة بنجاح.");
+    }
+
+    function addNewMember() {
+      if (session.role !== "admin") return;
+      const name = document.getElementById("newMemberName").value.trim();
+      if (!name) return;
+      if (!state.members.includes(name)) {
+        state.members.push(name);
+      }
+      const yr = getYear();
+      if (!state.financeByYear[yr].some(r => r.name === name)) {
+        state.financeByYear[yr].push({ name, m: [0,0,0,0,0,0,0,0,0,0,0,0], note: "عضو جديد" });
+      }
+      document.getElementById("newMemberName").value = "";
+      ensurePeriodData();
+      saveState();
+      renderSettingsPage();
+      alert(`تمت إضافة العضو (${name}) بنجاح.`);
+    }
+
+    function deleteMember(name) {
+      if (session.role !== "admin") return;
+      if (!confirm(`هل أنت متأكد من حذف العضو (${name}) نهائياً من قائمة الفريق؟`)) return;
+      state.members = state.members.filter(m => m !== name);
+      delete state.pins[name];
+      Object.keys(state.statsByPeriod).forEach(period => {
+        if (state.statsByPeriod[period]) delete state.statsByPeriod[period][name];
+      });
+      Object.keys(state.financeByYear).forEach(yr => {
+        if (Array.isArray(state.financeByYear[yr])) {
+          state.financeByYear[yr] = state.financeByYear[yr].filter(r => r.name !== name);
+        }
+      });
+      state.attendance.list = state.attendance.list.filter(x => x.name !== name);
+      saveState();
+      renderSettingsPage();
+      alert(`تم حذف العضو (${name}) من الفريق.`);
+    }
+
+    function adminResetMemberPin(name) {
+      if (session.role !== "admin") return;
+      const newPin = prompt(`إنشاء رقم سري جديد للعضو (${name}) بدون طلب الرقم القديم:`);
+      if (!newPin || newPin.trim().length < 4) {
+        alert("يرجى إدخال رقم سري من 4 أرقام على الأقل.");
+        return;
+      }
+      state.pins[name] = newPin.trim();
+      saveState();
+      renderSettingsPage();
+      alert(`تم تعيين الرقم السري الجديد للعضو (${name}) بنجاح.`);
+    }
+
+    function renderSettingsPage() {
+      document.getElementById("tickerInput").value = state.ticker;
+      document.getElementById("memberPinsTable").innerHTML = state.members.map((m, i) => {
+        const hasPin = !!state.pins[m];
+        return `
+          <tr>
+            <td>${i + 1}</td>
+            <td class="name-col">${m}</td>
+            <td>${hasPin ? `<span class="badge badge-green">مُفعّل (${state.pins[m]})</span>` : `<span class="badge badge-red">لم يُنشأ بعد</span>`}</td>
+            <td><button type="button" class="btn btn-primary btn-sm" onclick="adminResetMemberPin('${m}')">🔑 تعيين رقم سري</button></td>
+            <td><button type="button" class="btn btn-danger btn-sm" onclick="deleteMember('${m}')">🗑️ حذف العضو</button></td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    // التشغيل الأولي
+    loadState();
+    ensurePeriodData();
+    updateAuthUI();
+    renderActivePage();
+  </script>
+</body>
+</html>
